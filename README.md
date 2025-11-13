@@ -7,13 +7,7 @@ Aplikasi ini dikembangkan menggunakan Flutter sebagai bagian dari tugas Ujian Te
 
 Fitur Aplikasi
 
-- Splash Screen
-- Dashboard
-- Biodata
-- Kontak
-- Kalkulator
-- Cuaca
--Berita
+<p align="center"> <b>Splash Screen</b> &nbsp; | &nbsp; <b>Dashboard</b> &nbsp; | &nbsp; <b>Biodata</b> &nbsp; | &nbsp; <b>Kontak</b> &nbsp; | &nbsp; <b>Kalkulator</b> &nbsp; | &nbsp; <b>Cuaca</b> &nbsp; | &nbsp; <b>Berita</b> </p>
 
 1.  Splash Screen
 <p align="center">

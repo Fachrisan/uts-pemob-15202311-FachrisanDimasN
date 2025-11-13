@@ -13,19 +13,38 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
+  late Animation<double> _scaleAnimation;
+  late Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
 
     _fadeAnimation = CurvedAnimation(
       parent: _controller,
       curve: Curves.easeIn,
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOutBack,
+      ),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 0.3),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOutCubic,
+      ),
     );
 
     _controller.forward();
@@ -55,49 +74,114 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logo Text
-              const Text(
-                'MYAPPS',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xFF1A1A1A),
-                  letterSpacing: 2,
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              // Subtitle
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey.shade300,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  'UTS Mobile App',
+              // Logo Text dengan animasi scale
+              ScaleTransition(
+                scale: _scaleAnimation,
+                child: const Text(
+                  'MYAPPS',
                   style: TextStyle(
-                    fontSize: 11,
-                    color: Colors.grey.shade600,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 1,
+                    fontSize: 36,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFF1A1A1A),
+                    letterSpacing: 3,
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 50),
+
+              // Profile Image dengan animasi scale
+              ScaleTransition(
+                scale: _scaleAnimation,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 20,
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/images/profilpm.jpg',
+                      width: 120,
+                      height: 120,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey.shade200,
+                          ),
+                          child: Icon(
+                            Icons.person,
+                            size: 60,
+                            color: Colors.grey.shade400,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+
+              // Info dengan animasi slide
+              SlideTransition(
+                position: _slideAnimation,
+                child: Column(
+                  children: [
+                    // Nama
+                    Text(
+                      'Fachrisan Dimas N',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xFF1A1A1A),
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    // NIM dengan badge style
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Colors.grey.shade300,
+                          width: 1,
+                        ),
+                      ),
+                      child: Text(
+                        'NIM: 15202311',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade700,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 50),
 
               // Loading indicator
               SizedBox(
-                width: 24,
-                height: 24,
+                width: 28,
+                height: 28,
                 child: CircularProgressIndicator(
-                  strokeWidth: 2,
+                  strokeWidth: 2.5,
                   valueColor: AlwaysStoppedAnimation<Color>(
                     Colors.grey.shade400,
                   ),
@@ -112,15 +196,29 @@ class _SplashScreenState extends State<SplashScreen>
           padding: const EdgeInsets.only(bottom: 30),
           child: FadeTransition(
             opacity: _fadeAnimation,
-            child: Text(
-              'by Fachrisan Dimas Narendra',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.grey.shade400,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 0.5,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 1,
+                  width: 40,
+                  margin: const EdgeInsets.only(bottom: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+                Text(
+                  'Mobile Programming',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.grey.shade400,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.8,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

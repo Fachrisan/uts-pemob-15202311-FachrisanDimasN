@@ -99,7 +99,7 @@ Halaman Kontak menampilkan daftar kontak yang tersimpan secara statis di dalam a
 </p>
 
 - Nama dan Status Online</br>
-- Tombol Aksi: Pesan, Telepon, dan Video</br>
+- Tombol Aksi: Pesan, Telepon, dan Video yang mana semuanya berfungsi </br>
 - Nomor Telepon dan Email dalam bentuk card</br>
 
 ---

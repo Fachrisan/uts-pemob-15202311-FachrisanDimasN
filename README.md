@@ -13,7 +13,7 @@ Fitur Aplikasi
 <p align="center">
   <img src="https://github.com/user-attachments/assets/889359cf-5044-4881-aa64-a784182e6571" width="250" alt="Splash Screen">
 </p>
-Halaman ini merupakan tampilan awal ketika aplikasi MYAPPS dijalankan. Splash screen berfungsi untuk memberikan identitas aplikasi serta memperkenalkan pengembang sebelum pengguna diarahkan ke halaman utama (dashboard).
+Halaman ini merupakan tampilan awal ketika aplikasi MYAPPS dijalankan. Splash screen berfungsi untuk memberikan identitas aplikasi serta memperkenalkan pengembang sebelum pengguna diarahkan ke halaman utama (dashboard).</br>
 Pada tampilan ini, terdapat beberapa elemen utama, yaitu:
 - Judul Aplikasi (“MYAPPS”)
   Ditampilkan dengan ukuran font besar di bagian atas untuk memperjelas nama aplikasi.

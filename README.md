@@ -16,4 +16,7 @@ Fitur Aplikasi
 -Berita
 
 1.  Splash Screen
-![WhatsApp Image 2025-11-13 at 18 11 44_043961c5](https://github.com/user-attachments/assets/889359cf-5044-4881-aa64-a784182e6571)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/889359cf-5044-4881-aa64-a784182e6571" width="250" alt="Splash Screen">
+</p>
+
